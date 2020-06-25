@@ -6,19 +6,22 @@ import java.io.InputStreamReader;
 
 public class ProductSelectPhase {
 
-	public void Main(Product product) {
+	Product product;
+	
+	public void Main() {
 
 		//商品リストの表示
 		product.DisplayList();
 
 		//商品選択入力受付
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
 		String input;
 		Integer pnum = null;
 
 		do {
 			System.out.println("商品を選択してください:");
 			try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			input = br.readLine();
 			pnum = Integer.valueOf(input);
 			}catch(IOException e1){

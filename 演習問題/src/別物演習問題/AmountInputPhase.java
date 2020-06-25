@@ -18,7 +18,7 @@ public class AmountInputPhase {
 			input = br.readLine();
 			amount = Integer.valueOf(input);
 
-			if(amount < product.Price) {
+			if(amount < product.price) {
 				System.out.println("お金が足りません！");
 			}
 			}catch(IOException e1){
@@ -27,7 +27,7 @@ public class AmountInputPhase {
 				System.out.println("数字で入力してください");
 			}
 
-		}while(amount >= product.Price);
+		}while(amount >= product.price);
 
 		return;
 	}

@@ -14,13 +14,13 @@ public class ActionSelectPhase {
 
 
 		//行動選択入力受付と検証
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input;
 		Integer anum = null;
 
 		do {
 			System.out.print("どうしますか？:");
 			try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			input = br.readLine();
 			anum = Integer.valueOf(input);
 			}catch(IOException e1){

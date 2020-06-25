@@ -10,27 +10,35 @@ public class ManegementDisplay {
 
 		//商品選択へ
 		ProductSelectPhase psp = new ProductSelectPhase();
-		psp.Main(tea);
+		
+		psp.product = tea; 
+		boolean flg = true;
+		while (flg) {
+			psp.Main();
+			//行動選択へ
+			ActionSelectPhase asp = new ActionSelectPhase();
+			Integer temp = asp.Main();
+			switch (temp) {
+			case 1:
+				//金額入力へ
+				AmountInputPhase aip = new AmountInputPhase();
+				aip.Main(tea);
+				//開封画面へ
+				OpenSelectPhase osp = new OpenSelectPhase();
+				osp.Main(tea);
+				break;
+			case 2:
+				continue;
+			case 9:
+				flg = false;
+				break;
+			default:
+				;
+				break;
+			}
 
-		//行動選択へ
-		ActionSelectPhase asp = new ActionSelectPhase();
-		Integer temp = asp.Main();
-		switch(temp) {
-			case 2 : main(args); break;
-			case 9 : System.exit(0); break;
-			default : ; break;
 		}
 
-		//金額入力へ
-		AmountInputPhase aip = new AmountInputPhase();
-		aip.Main(tea);
-
-		//開封画面へ
-		OpenSelectPhase osp = new OpenSelectPhase();
-		osp.Main(tea);
-
-		//最初に戻る
-		main(args);
 	}
 
 }
