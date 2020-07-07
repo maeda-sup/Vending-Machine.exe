@@ -6,12 +6,16 @@ public class ManegementDisplay {
 		// TODO 自動生成されたメソッド・スタブ
 
 		//商品(群)の生成
-		Product tea = new Product("紅茶", 150, "英国紳士がよくキめてるやべーやつ。飲みすぎると英国面に堕ちる", "英国面に一歩近づいた気がする。");
+		ProductList productlist = new ProductList();
+
+		productlist.showlist();
+
+		//Product tea = new Product("紅茶", 150, "英国紳士がよくキめてるやべーやつ。飲みすぎると英国面に堕ちる", "英国面に一歩近づいた気がする。");
 
 		//商品選択へ
 		ProductSelectPhase psp = new ProductSelectPhase();
-		
-		psp.product = tea; 
+
+		psp.product = tea;
 		boolean flg = true;
 		while (flg) {
 			psp.Main();
