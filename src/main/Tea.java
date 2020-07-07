@@ -1,4 +1,4 @@
-package 別物演習問題;
+package main;
 
 public class Tea implements Shohin {
 

@@ -1,5 +1,5 @@
 
-package 別物演習問題;
+package main;
 import java.util.ArrayList;
 
 public class ProductList {

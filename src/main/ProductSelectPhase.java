@@ -1,4 +1,4 @@
-package 別物演習問題;
+package main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
