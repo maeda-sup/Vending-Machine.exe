@@ -8,17 +8,24 @@ public class ManegementDisplay {
 		//商品(群)の生成
 		ProductList productlist = new ProductList();
 
-		productlist.showlist();
 
-		//Product tea = new Product("紅茶", 150, "英国紳士がよくキめてるやべーやつ。飲みすぎると英国面に堕ちる", "英国面に一歩近づいた気がする。");
 
-		//商品選択へ
-		ProductSelectPhase psp = new ProductSelectPhase();
 
-		psp.product = tea;
+
 		boolean flg = true;
 		while (flg) {
-			psp.Main();
+
+			productlist.showlist();
+
+			int total = productlist.total();
+
+
+			//商品選択へ
+			ProductSelectPhase psp = new ProductSelectPhase();
+
+			int selectnum = psp.Main(total);
+
+			Shohin selected = productlist.shohinout(selectnum);
 			//行動選択へ
 			ActionSelectPhase asp = new ActionSelectPhase();
 			Integer temp = asp.Main();
@@ -26,10 +33,15 @@ public class ManegementDisplay {
 			case 1:
 				//金額入力へ
 				AmountInputPhase aip = new AmountInputPhase();
-				aip.Main(tea);
+
+				int amount = selected.getprice();
+				aip.Main(amount);
 				//開封画面へ
 				OpenSelectPhase osp = new OpenSelectPhase();
-				osp.Main(tea);
+
+				String detail = selected.getdetail();
+				String comment = selected.getcomment();
+				osp.Main(detail, comment);
 				break;
 			case 2:
 				continue;

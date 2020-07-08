@@ -6,17 +6,13 @@ import java.io.InputStreamReader;
 
 public class ProductSelectPhase {
 
-	Product product;
-	
-	public void Main() {
 
-		//商品リストの表示
-		product.DisplayList();
+	public int Main(int max) {
 
 		//商品選択入力受付
-		
+
 		String input;
-		Integer pnum = null;
+		int pnum = 0;
 
 		do {
 			System.out.println("商品を選択してください:");
@@ -30,9 +26,9 @@ public class ProductSelectPhase {
 				System.out.println("数字で入力してください");
 			}
 
-		}while(pnum == 1);
+		}while(pnum < 1 || max < pnum);
 
-		return;
+		return pnum;
 
 	}
 }

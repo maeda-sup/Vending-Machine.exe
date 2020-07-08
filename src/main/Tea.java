@@ -16,7 +16,7 @@ public class Tea implements Shohin {
 	@Override
 	public String getname() {
 		// TODO 自動生成されたメソッド・スタブ
-		return "|"+ name +"|"+ price + "円" ;
+		return name;
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class AmountInputPhase {
-	public void Main(Product product) {
+	public void Main(int price) {
 
 		//準備
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,7 +18,7 @@ public class AmountInputPhase {
 			input = br.readLine();
 			amount = Integer.valueOf(input);
 
-			if(amount < product.price) {
+			if(amount < price) {
 				System.out.println("お金が足りません！");
 			}
 			}catch(IOException e1){
@@ -27,7 +27,7 @@ public class AmountInputPhase {
 				System.out.println("数字で入力してください");
 			}
 
-		}while(amount >= product.price);
+		}while(amount < price);
 
 		return;
 	}

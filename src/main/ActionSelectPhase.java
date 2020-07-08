@@ -29,7 +29,7 @@ public class ActionSelectPhase {
 				System.out.println("数字で入力してください");
 			}
 
-		}while(anum == 1 || anum == 2 || anum == 9);
+		}while(anum != 1 && anum != 2 && anum != 9);
 
 
 		return anum;

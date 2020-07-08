@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class OpenSelectPhase {
-	public void Main(Product product) {
+	public void Main(String syosai, String okotoba) {
 
 		//開封選択画面の表示
 		System.out.println("1|詳細を見る");
@@ -24,7 +24,7 @@ public class OpenSelectPhase {
 			onum = Integer.valueOf(input);
 
 			if(onum == 1) {
-				product.DisplayDetail();
+				System.out.println(syosai);
 			}
 			}catch(IOException e1){
 
@@ -32,11 +32,11 @@ public class OpenSelectPhase {
 				System.out.println("数字で入力してください");
 			}
 
-			}while(onum == 2 || onum == 3);
+			}while(onum != 2 && onum != 3);
 
 		//コメント表示
 		if(onum == 2) {
-			product.DisplayComment();
+			System.out.println(okotoba);
 		}
 
 		return;
