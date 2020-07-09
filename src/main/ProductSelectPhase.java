@@ -15,7 +15,7 @@ public class ProductSelectPhase {
 		int pnum = 0;
 
 		do {
-			System.out.println("商品を選択してください:");
+			System.out.print("商品を選択してください:");
 			try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			input = br.readLine();
@@ -23,7 +23,7 @@ public class ProductSelectPhase {
 			}catch(IOException e1){
 
 			}catch(NumberFormatException e2) {
-				System.out.println("数字で入力してください");
+				System.out.println("※数字で入力してください");
 			}
 
 		}while(pnum < 1 || max < pnum);

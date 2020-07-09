@@ -10,7 +10,7 @@ public class AmountInputPhase {
 		//準備
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input;
-		Integer amount = null;
+		int amount = 0;
 
 		do {
 			System.out.print("入れる金額を入力してください:");
@@ -18,13 +18,16 @@ public class AmountInputPhase {
 			input = br.readLine();
 			amount = Integer.valueOf(input);
 
-			if(amount < price) {
-				System.out.println("お金が足りません！");
-			}
 			}catch(IOException e1){
+				continue;
 
 			}catch(NumberFormatException e2) {
-				System.out.println("数字で入力してください");
+				System.out.println("※数字で入力してください");
+				continue;
+			}
+
+			if(amount < price) {
+				System.out.println("お金が足りません！");
 			}
 
 		}while(amount < price);

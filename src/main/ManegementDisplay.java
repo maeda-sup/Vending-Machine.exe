@@ -8,10 +8,6 @@ public class ManegementDisplay {
 		//商品(群)の生成
 		ProductList productlist = new ProductList();
 
-
-
-
-
 		boolean flg = true;
 		while (flg) {
 

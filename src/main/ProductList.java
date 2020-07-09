@@ -9,8 +9,7 @@ public class ProductList {
 
 	ProductList(){
 		this.productlist = new ArrayList<Shohin>();
-		productlist.add(new Tea("おっちゃ"));
-
+		productlist.add(new Tea("アールグレイ"));
 	}
 
 	public void showlist() {
