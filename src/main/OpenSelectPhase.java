@@ -29,7 +29,7 @@ public class OpenSelectPhase {
 			}catch(IOException e1){
 
 			}catch(NumberFormatException e2) {
-				System.out.println("数字で入力してください");
+				System.out.println("※数字で入力してください");
 			}
 
 			}while(onum != 2 && onum != 3);

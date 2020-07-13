@@ -10,6 +10,9 @@ public class ProductList {
 	ProductList(){
 		this.productlist = new ArrayList<Shohin>();
 		productlist.add(new Tea("アールグレイ"));
+		productlist.add(new Water("南アルプスの天然水"));
+		productlist.add(new Tea("ダージリン"));
+		productlist.add(new Water("Evian"));
 	}
 
 	public void showlist() {
