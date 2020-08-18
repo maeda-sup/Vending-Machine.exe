@@ -3,8 +3,10 @@ package main;
 public interface Shohin {
 
 	String getname();
-	int getprice();
+	Integer getprice();
+	Integer getnokori();
+	void herasu();
+	void fuyasu();
 	String getdetail();
 	String getcomment();
-
 }

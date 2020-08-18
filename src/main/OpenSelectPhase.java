@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class OpenSelectPhase {
+	/**
+	 * 開封選択
+	 * @param syosai
+	 * @param okotoba
+	 */
 	public void Main(String syosai, String okotoba) {
 
 		//開封選択画面の表示
@@ -24,6 +29,7 @@ public class OpenSelectPhase {
 			onum = Integer.valueOf(input);
 
 			if(onum == 1) {
+				//詳細表示
 				System.out.println(syosai);
 			}
 			}catch(IOException e1){

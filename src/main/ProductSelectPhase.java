@@ -7,13 +7,17 @@ import java.io.InputStreamReader;
 public class ProductSelectPhase {
 
 
+	/**
+	 * 商品選択
+	 * @param max
+	 * @return
+	 */
 	public int Main(int max) {
 
+		String input;//入力値
+		int pnum = 0;//選択値
+
 		//商品選択入力受付
-
-		String input;
-		int pnum = 0;
-
 		do {
 			System.out.print("商品を選択してください:");
 			try {
