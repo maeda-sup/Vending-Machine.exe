@@ -6,5 +6,5 @@ public interface Shohin {
 	int getprice();
 	String getdetail();
 	String getcomment();
-
+	int getstock();
 }

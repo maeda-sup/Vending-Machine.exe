@@ -4,13 +4,18 @@ public class Tea implements Shohin {
 
 	//	フィールド変数
 	private String name;
-	private int price = 150;
-	private String detail = "英国紳士の嗜み";
-	private String comment = "英国面を感じる" ;
+	private int price;
+	private String detail;
+	private String comment;
+	private int stock;
 
-	public Tea(String name) {
+	public Tea(String name, int price, String detail, String comment, int stock) {
 		// TODO 自動生成されたコンストラクター・スタブ
 		this.name = name;
+		this.price = price;
+		this.detail = detail;
+		this.comment = comment;
+		this.stock = stock;
 	}
 
 	@Override
@@ -36,7 +41,15 @@ public class Tea implements Shohin {
 		// TODO 自動生成されたメソッド・スタブ
 		return comment;
 	}
+	@Override
+	public int getstock() {
+		// TODO 自動生成されたメソッド・スタブ
+		return stock;
+	}
 
-
+	public void stockUpdate(int stock2) {
+		// TODO 自動生成されたメソッド・スタブ
+		this.stock = stock2;
+	}
 
 }
