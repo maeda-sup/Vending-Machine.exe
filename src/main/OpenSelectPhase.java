@@ -5,12 +5,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class OpenSelectPhase {
+
+
+
+	private DatabaseAccess db ;
+
+	public void setDb(DatabaseAccess dba1) {
+		this.db = dba1;
+	}
+
+
 	/**
 	 * 開封選択
-	 * @param syosai
-	 * @param okotoba
+	 * @param
 	 */
-	public void Main(String syosai, String okotoba) {
+	public void Main(int choice) {
+
+		String detail =db.getDetail(choice);
+		String comment =db.getComment(choice);
 
 		//開封選択画面の表示
 		System.out.println("|1|詳細を見る");
@@ -30,7 +42,7 @@ public class OpenSelectPhase {
 
 			if(onum == 1) {
 				//詳細表示
-				System.out.println(syosai);
+				System.out.println(detail);
 			}
 			}catch(IOException e1){
 
@@ -42,7 +54,7 @@ public class OpenSelectPhase {
 
 		//コメント表示
 		if(onum == 2) {
-			System.out.println(okotoba);
+			System.out.println(comment);
 		}
 
 		return;

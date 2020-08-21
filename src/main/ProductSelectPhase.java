@@ -1,38 +1,51 @@
 package main;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.sql.SQLException;
 
-public class ProductSelectPhase {
+public class ProductSelectPhase{
+
+	private DatabaseAccess db ;
+
+	public void setDb(DatabaseAccess dba1) {
+		this.db = dba1;
+	}
+
+	//引数なし（setDBメソッドに引数）のパターン
+	public ProductSelectPhase() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+	//引数あり（pspに引数）のパターン
+	public ProductSelectPhase(DatabaseAccess dba) {
+		// TODO 自動生成されたコンストラクター・スタブ
+//		 db = dba;
+		this.setDb(dba);
+	}
 
 
-	/**
-	 * 商品選択
-	 * @param max
-	 * @return
-	 */
-	public int Main(int max) {
 
-		String input;//入力値
-		int pnum = 0;//選択値
+	public int main() throws SQLException {
 
-		//商品選択入力受付
-		do {
-			System.out.print("商品を選択してください:");
-			try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			input = br.readLine();
-			pnum = Integer.valueOf(input);
-			}catch(IOException e1){
+	//選択された商品のID
+	int select;
 
-			}catch(NumberFormatException e2) {
-				System.out.println("※数字で入力してください");
-			}
+	//リスト表示
+	db.showlist();
 
-		}while(pnum < 1 || max < pnum);
+	//選択された商品オブジェクト
+	select = db.shohinout();
 
-		return pnum;
+	return select;
+	}
+
+
+
+	//選択した商品の在庫情報を取得
+	public Zaiko zaiko(int choice) throws SQLException {
+
+		return db.getZaiko(choice);
 
 	}
+
+
 }
