@@ -24,10 +24,10 @@ public class StockSelectPhase {
 		System.out.println("");
 		System.out.println("選択された商品は品切れです");
 		System.out.println("在庫を補充しますか？");
-		System.out.println("－－－－－－－－－－");
+		System.out.println("--------------------");
 		System.out.println("|1|在庫を補充する");
 		System.out.println("|2|商品選択に戻る");
-		System.out.println("－－－－－－－－－－");
+		System.out.println("--------------------");
 		System.out.println("");
 
 		Stockselect(stock,selectnum);

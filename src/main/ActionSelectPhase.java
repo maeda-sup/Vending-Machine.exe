@@ -8,9 +8,13 @@ public class ActionSelectPhase {
 	public Integer Main() {
 
 		//行動選択画面の表示
+		System.out.println("");
+		System.out.println("--------------------------");
 		System.out.println("1|お金を入れる");
 		System.out.println("2|商品選択に戻る");
 		System.out.println("9|やっぱり買うのや～めた");
+		System.out.println("--------------------------");
+		System.out.println("");
 
 
 		//行動選択入力受付と検証
@@ -18,6 +22,7 @@ public class ActionSelectPhase {
 		Integer anum = null;
 
 		do {
+			System.out.println("");
 			System.out.print("どうしますか？:");
 			try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +31,9 @@ public class ActionSelectPhase {
 			}catch(IOException e1){
 
 			}catch(NumberFormatException e2) {
+				System.out.println("");
 				System.out.println("数字で入力してください");
+				System.out.println("");
 			}
 
 		}while(anum != 1 && anum != 2 && anum != 9);

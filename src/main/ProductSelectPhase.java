@@ -49,6 +49,7 @@ public class ProductSelectPhase {
 	public int extracted() {
 		int pnum = 0;
 		String input;
+		System.out.println("");
 		System.out.print("商品を選択してください:");
 		try {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

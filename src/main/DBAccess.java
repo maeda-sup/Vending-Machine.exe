@@ -34,12 +34,14 @@ public class DBAccess {
 
 		// SQLの実行
 		ResultSet rset = st.executeQuery(sql);
+		
+		System.out.println("");
+		System.out.println("------------------------");
 
 //		List<Product> plist = new ArrayList<Product>();
 
 		// 照会結果の取得
 		while (rset.next()) {//NEXTは次の行に　
-
 
 				System.out.println(
 						"|" + rset.getInt("id") + "|" + rset.getString("name") + "|" + rset.getString("price") + "円");
@@ -51,6 +53,7 @@ public class DBAccess {
 //				plist.add(prd);　1行1行をリストに入れていく。→List＜Productlist＞でテーブルが
 
 		}
+		System.out.println("------------------------");
 
 	}
 

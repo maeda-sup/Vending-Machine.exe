@@ -23,7 +23,9 @@ public class AmountInputPhase {
 		Integer amount = 0;
 
 		do {
-			System.out.println("入れる金額を入力してください:");
+			System.out.println("");
+			System.out.print("入れる金額を入力してください:");
+			System.out.println("");
 			try {
 			input = br.readLine();
 			tounyu = Integer.valueOf(input);
