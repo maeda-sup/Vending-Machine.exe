@@ -1,5 +1,7 @@
 package main;
 
+import java.sql.SQLException;
+
 public class Hontai {
 
 
@@ -7,6 +9,7 @@ public class Hontai {
 	private ActionSelectPhase asp;
 	private AmountInputPhase aip;
 	private OpenSelectPhase osp;
+	private Zaiko zai;
 
 
 	public void setps(ProductSelectPhase psp) {
@@ -29,16 +32,20 @@ public class Hontai {
 		this.osp = osp;
 	}
 
+	public void setza(Zaiko zai) {
+		// TODO 自動生成されたメソッド・スタブ
+		this.zai = zai;
+	}
 
-	Zaiko zai = new Zaiko();
-	//選択された商品の在庫情報
-	public Zaiko selectzaiko;
+
+	//選択された商品の在庫数
+	public int selectzaiko;
 
 	//選択された商品ID
 	int selected = 0;
 
 
-	public void menuMain() {
+	public void menuMain() throws SQLException {
 
 	//trueな限りループ
 	boolean flg = true;
@@ -51,12 +58,26 @@ public class Hontai {
 		//入金
 		case PayIn:
 
+			//商品選択されているか
 			if (selected != 0) {
-				//商品の金額取得して入金へ
-				aip.Main(selected);
 
-				//開封画面へ
-				osp.Main(selected);
+				//選択商品の在庫有無を確認
+				int arunashi = zai.zaikoumu(selected);
+
+				//在庫があった時
+				if (arunashi == 0) {
+					//商品の金額取得して入金へ
+					aip.Main(selected);
+
+					//DBの在庫数を減らす
+					zai.herasu(selected);
+
+					//開封画面へ
+					osp.Main(selected);
+				}
+
+				//選択状態の解除
+				selected = 0;
 
 			}else {
 				aip.ruikei();
@@ -66,14 +87,16 @@ public class Hontai {
 		//商品選択
 		case Choose:
 
-			//選択された商品ID
+			//選択された商品番号
 			selected = psp.main();
 
-			//選択された商品の在庫情報取得
-			selectzaiko = psp.zaiko(selected);
+			//選択された商品の在庫数取得
+			selectzaiko = psp.choizai(selected);
 
-			if (selectzaiko.getNokori()<1) {
+			if (selectzaiko<1) {
 				System.out.println("売切れです");
+				//選択状態の解除
+				selected = 0;
 			}
 
 			break;
@@ -84,11 +107,11 @@ public class Hontai {
 			//選択された商品ID
 			selected = psp.main();
 
-			//選択された商品の在庫情報取得
-			selectzaiko = psp.zaiko(selected);
+			//選択された商品の在庫数を任意の数増やす
+			psp.fuyasu(selected);
 
-			//在庫数を任意の数増やす
-			selectzaiko.fuyasu();
+			//選択状態の解除
+			selected = 0;
 
 			break;
 

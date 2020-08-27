@@ -4,16 +4,23 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import product.Product;
+
 public class OpenSelectPhase {
 
+	private DatabaseAccess dba ;
+	private Product pro;
 
-
-	private DatabaseAccess db ;
-
-	public void setDb(DatabaseAccess dba1) {
-		this.db = dba1;
+	public void setDb(DatabaseAccess dba) {
+		this.dba = dba;
 	}
 
+
+
+	public void setPro(Product pro) {
+		// TODO 自動生成されたメソッド・スタブ
+		this.pro = pro;
+	}
 
 	/**
 	 * 開封選択
@@ -21,8 +28,8 @@ public class OpenSelectPhase {
 	 */
 	public void Main(int choice) {
 
-		String detail =db.getDetail(choice);
-		String comment =db.getComment(choice);
+		String detail =pro.getData().get(choice-1).getDetail();
+		String comment =pro.getData().get(choice-1).getComment();
 
 		//開封選択画面の表示
 		System.out.println("|1|詳細を見る");
@@ -59,4 +66,6 @@ public class OpenSelectPhase {
 
 		return;
 	}
+
+
 }

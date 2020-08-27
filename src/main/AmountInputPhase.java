@@ -5,19 +5,38 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 
+import kane.Kane;
+import product.Product;
+
 public class AmountInputPhase {
 
 
 	int total;//投入合計
 
+	private Kane kane;
 
-
-	private DatabaseAccess db ;
-
-	public void setDb(DatabaseAccess dba1) {
-		this.db = dba1;
+	public void setKane(Kane kane) {
+		// TODO 自動生成されたメソッド・スタブ
+		this.kane = kane;
 	}
 
+
+	private Product pro ;
+
+	public void setPro(Product pro) {
+		this.pro = pro;
+	}
+
+
+
+
+	/**
+	 * DBの累計を初期設定
+	 */
+	public void firstsetRuikei() {
+		//DBの投入金額をセット
+		total = kane.getRuikei();
+	}
 
 
 	/**
@@ -27,32 +46,29 @@ public class AmountInputPhase {
 	 */
 	public void Main(int selectid) throws SQLException {
 
-		//DBから投入金額をセット
-		total = db.getRuikei();
-
 		//選択した商品の値段
-		int price = db.getprice(selectid);
+		int price = pro.getSelectPrice(selectid);
 
 		hikaku(price);
 
 		//現在残高の表示
-		if (total > price) {
-			System.out.println("現在残高は" + (total - price) + "円");
+		if (total >= price) {
+			System.out.println(pro.getSelectName(selectid) + "が出てきた！");
+			System.out.println("現在投入残高は" + (total - price) + "円");
 		}
 
 		total -= price;
 
-		//DBの在庫減らす
-		db.herasuDb(selectid);
+		//逐一累計管理に反映
+		kane.imapay(total);
 
 		return;
 	}
 
 
 	/**
+	 * 比較
 	 * @param kakaku
-	 * @return total
-	 * @throws SQLException
 	 */
 	public void hikaku(int kakaku){
 
@@ -94,9 +110,12 @@ public class AmountInputPhase {
 		//現在投入した金額表示
 		System.out.println("現在投入金額は" + total + "円");
 
+
+		//逐一累計管理に反映
+		kane.imapay(total);
+
 		return ;
 	}
-
 
 
 
