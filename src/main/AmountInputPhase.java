@@ -5,7 +5,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class AmountInputPhase {
-	public int Main(int price, int stock) {
+
+	DBAccess productlist;
+
+
+	public void setProductlist(DBAccess productlist) {
+		this.productlist = productlist;
+	}
+
+
+	public int Main(int price, int stock, int selectnum) {
 
 		//準備
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -37,7 +46,9 @@ public class AmountInputPhase {
 
 		System.out.println();
 		System.out.println("ご購入ありがとうございます。");
-		stock = stock - 1;
+//		stock = stock - 1;
+		productlist.stockupdate2(selectnum);
+
 
 		if(amount > price) {
 			System.out.print("おつりです:");

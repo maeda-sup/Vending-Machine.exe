@@ -1,13 +1,15 @@
 
 package main;
 
+import java.sql.SQLException;
+
 public class ManegementDisplay {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		// TODO 自動生成されたメソッド・スタブ
 
 		//商品(群)の生成
-		DBAccess productlist = new DBAccess();         //productlist作る
+		DBAccess productlist = new DBAccess();         //productlist作る　☆Productlist→DBAccess
 		productlist.connectDB();
 
 		boolean flg = true;                                 //boolean型flgを作った
@@ -16,6 +18,8 @@ public class ManegementDisplay {
 			productlist.showlist();                           //productlistのshowlist呼び出し
 
 			int total = productlist.total();                //int型のtotalにproductlistのtotalを入れる
+
+
 
 
 			//商品選択へ
@@ -28,14 +32,16 @@ public class ManegementDisplay {
 
 				int selectnum = psp.Main();                                 //intのselectnumにproductselectphaseのmainを入れる
 
-				selected = productlist.shohinout(selectnum);         //Shohin型のxelectedにproductlistのshohinoutを入れる。selectnumを持っていく。
+				selected = productlist.shohinout(selectnum);         //Shohin型のselectedにproductlistのshohinoutを入れる。selectnumを持っていく。
 
 				StockSelectPhase ssp = new StockSelectPhase();
+				
+				ssp.setProductlist(productlist);
 
 				stock = selected.getStock();
 
 			if(stock < 1) {
-				ssp.main();
+				ssp.main(stock,selectnum);   //☆void stock=を消した、selectnum増やした　これも戻す？
 
 //				if( selected  instanceof Juice) {
 //					Juice juice = (Juice)selected;
@@ -62,27 +68,26 @@ public class ManegementDisplay {
 			case 1:
 				//金額入力へ
 				AmountInputPhase aip = new AmountInputPhase();          //1が選ばれたら、amountinputfhaseをつくる
+				aip.setProductlist(productlist);
 
-				int amount = selected.getprice();                      //int型のamountにshohin型のselectedのgetpriceを入れる
-				stock = aip.Main(amount,stock);                                       //aipのmainに入れる.stockを1減らして持って帰る
+				int amount = selected.getPrice();                      //int型のamountにshohin型のselectedのgetpriceを入れる
+				stock = aip.Main(amount,stock,selectnum);                                       //aipのmainに入れる.stockを1減らして持って帰る
 
 //				selected.stockUpdate(stock);
 				// キャスト
-				if( selected  instanceof Juice) {
-					Juice juice = (Juice)selected;
-					juice.stockUpdate(stock);
-				}
-				else if(selected instanceof Tea) {
-					Tea tea = (Tea)selected;
-					tea.stockUpdate(stock);
-
-				}
+//				if( selected  instanceof Juice) {
+//					Juice juice = (Juice)selected;
+//					juice.stockUpdate(stock);
+//				}
+//				else if(selected instanceof Tea) {
+//					Tea tea = (Tea)selected;
+//					tea.stockUpdate(stock);
 
 				//開封画面へ
 				OpenSelectPhase osp = new OpenSelectPhase();           //openselectphaseを作る
 
-				String detail = selected.getdetail();                  //string型のdetailにselectedのgetdetailを入れる
-				String comment = selected.getcomment();                //string型のdetailにselectedのgetdetailを入れる
+				String detail = selected.getDetails();                  //string型のdetailにselectedのgetdetailを入れる
+				String comment = selected.getComment();                //string型のdetailにselectedのgetdetailを入れる
 				osp.Main(detail, comment);                             //openselectphaseのmainにdetailとcommentを持っていく？？？
 				break;
 			case 2:
