@@ -1,37 +1,73 @@
-
 package main;
-import java.util.ArrayList;
+import java.util.List;
 
 public class ProductList {
 
-	private ArrayList<Shohin> productlist;
+	private List<Product> productlist;
+	private ProductDao pDao;
+	private StockDao sDao;
 
 
-	ProductList(){
-		this.productlist = new ArrayList<Shohin>();
-		productlist.add(new Tea("アールグレイ"));
-		productlist.add(new Water("南アルプスの天然水"));
-		productlist.add(new Tea("ダージリン"));
-		productlist.add(new Water("Evian"));
+
+	public void setsDao(StockDao sDao) {
+		this.sDao = sDao;
+	}
+
+	public void setpDao(ProductDao pDao) {
+		this.pDao = pDao;
+	}
+
+	public void setConnection(DB db) {
+		return;
+	}
+
+	public void makeList() {
+		productlist = pDao.makelist();
 	}
 
 	public void showlist() {
 		int i = 1;
-		for(Shohin shohin: productlist) {
-			System.out.println("|"+ i +"|"+shohin.getname()+"|"+ shohin.getprice() + "円");
+		String soldout = "";
+		for(Product prd: productlist) {
+//			prd.setConn(db);
+//			if(prd.getStock(prd.getId()) == 0) {
+//				soldout = "|売り切れ";
+//			}
+
+			if(sDao.getStock(prd.getId()) == 0) {
+				soldout = "|売り切れ";
+			}
+
+			System.out.println("|"+ i +"|"+ prd.getName()+"|"+ prd.getPrice() + "円" + soldout);
+			soldout = "";
 			i++;
 		}
 	}
 
-	/**
+	public void showStocks() {
+		int i = 1;
+		for(Product prd: productlist) {
+			if(sDao.isFull(prd.getId())){
+				System.out.println("|"+ i +"|"+ prd.getName() +"|満タン");
+			}else {
+				System.out.println("|"+ i +"|"+ prd.getName() +"|残り"+ sDao.getStock(prd.getId()) + "個");
+			}
+			i++;
+		}
+		System.out.println("|0|終了する");
+	}
+
+
+
+	/**番号に該当する商品を返す
 	 * @param shohinnum
 	 * @return
 	 */
-	public Shohin shohinout(int shohinnum) {
+	public Product getProduct(int productnum) {
 
-		Shohin shohin = productlist.get(shohinnum -1);
+		Product prd = productlist.get(productnum -1);
 
-		return shohin;
+		return prd;
 	}
 
 	public int total() {
