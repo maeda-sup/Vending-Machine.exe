@@ -12,6 +12,9 @@ public class DB {
 	private String password = "supply";
 	Connection connect;
 
+	/** DBに接続を行う
+	 * @throws SQLException
+	 */
 	public void connectDB() throws SQLException{
 		try {
 			connect = DriverManager.getConnection(uri,user,password);
@@ -25,6 +28,9 @@ public class DB {
 		return ;
 	}
 
+	/**DB接続を解除する
+	 *
+	 */
 	public void closeConnection(){
 		try {
 			connect.close();
@@ -32,10 +38,6 @@ public class DB {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-	}
-
-	public void reduceStock(int productId) {
-
 	}
 
 	public Statement createStatement() {
@@ -62,6 +64,9 @@ public class DB {
 		return ps;
 	}
 
+	/** DBへの変更を確定させる
+	 *
+	 */
 	public void commit() {
 		try {
 			connect.commit();
