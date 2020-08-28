@@ -31,6 +31,9 @@ public class ProductManagement {
 
 
 
+	/**コンソールに入力されたものを処理する
+	 * @return 入力された数字（数字以外が入力されると-1を返す）
+	 */
 	private int imputNum() {
 		String input = null;
 		int inputNum = 0;
@@ -52,16 +55,26 @@ public class ProductManagement {
 		return inputNum;
 	}
 
+	/**有効な数字かどうかをチェックする
+	 * @param beChecked
+	 * @return true:無効な場合 false:有効な場合
+	 */
 	private boolean checkNum(int beChecked) {
+		if(beChecked < 1 || max < beChecked) {
+			System.out.print("商品の番号を入力してください:");
+		}
 		return beChecked < 1 || max < beChecked;
 	}
 
+	/** コンソールの番号入力を受け付けて、商品を返す。
+	 * @return
+	 */
 	public Product searchProduct() {
 		selectNum = this.productnumLoop();
 		Product selected = productlist.getProduct(selectNum);
 		return selected;
 	}
 
-	
+
 
 }

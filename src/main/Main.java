@@ -15,7 +15,7 @@ public class Main {
 			return;
 		}
 
-
+		//オブジェクトの用意と関連付け
 		VendingSystem vs = new VendingSystem();
 		ProductList plist = new ProductList();
 		ProductDao pDao = new ProductDao();
@@ -35,10 +35,10 @@ public class Main {
 		vs.setsDao(sDao);
 		vs.setmDao(mDao);
 		vs.setMs(ms);
-
+		//メインプログラム開始
 		vs.selectFunction();
 
-
+		//データベース接続解除
 		db.closeConnection();
 
 	}

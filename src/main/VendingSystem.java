@@ -17,10 +17,6 @@ public class VendingSystem {
 		this.mDao = mDao;
 	}
 
-	public VendingSystem() {
-
-	}
-
 	public void setsDao(StockDao sDao) {
 		this.sDao = sDao;
 	}
@@ -143,6 +139,9 @@ public class VendingSystem {
 
 	private boolean checkNum(int num) {
 		// TODO 自動生成されたメソッド・スタブ
+		if(num != 1 && num != 2) {
+			System.out.print("表示された番号を入力してください:");
+		}
 		return (num != 1 && num != 2);
 	}
 

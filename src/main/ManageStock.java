@@ -19,6 +19,9 @@ public class ManageStock {
 		return;
 	}
 
+	/**コンソールからの入力の受付
+	 * @return 入力された数字(文字の場合は-1)
+	 */
 	private int inputNum() {
 		String input = null;
 		int inputNum = 0;
@@ -34,16 +37,23 @@ public class ManageStock {
 			inputNum = Integer.valueOf(input);
 		} catch (NumberFormatException e2) {
 			// TODO 自動生成された catch ブロック
-			inputNum = 0;
+			inputNum = -1;
 		}
 
 		return inputNum;
 	}
 
+	/** 0以上の数字が入ってきたかの確認
+	 * @param checknum
+	 * @return true:負の数・文字が入力された場合 false:0以上の数字が入力された場合
+	 */
 	private boolean checkNumToAdd(int checknum) {
-		return checknum <= 0;
+		return checknum < 0;
 	}
 
+	/**補充する個数の入力受付
+	 * @return 0以上の数字
+	 */
 	private int getNumToAdd() {
 		int numToAdd = 0;
 		do {
@@ -53,20 +63,33 @@ public class ManageStock {
 		return numToAdd;
 	}
 
+	/**補充する商品の番号の受付
+	 * @return 商品リストにある商品番号
+	 */
 	private int getProductNum() {
 		int productNum = 0;
 		do {
 			productNum = this.inputNum();
+			if(this.checkProductNum(productNum)) {
+				System.out.print("補充したい商品の番号を入力してください:");
+			}
 		}while(this.checkProductNum(productNum));
 		return productNum;
 	}
 
+	/**入力が商品番号かのチェック
+	 * @param setted
+	 * @return true:商品番号ではない場合 false:商品番号の場合
+	 */
 	private boolean checkProductNum(int setted) {
 		int max = productlist.total();
 		// TODO 自動生成されたメソッド・スタブ
 		return setted < 0 || max < setted;
 	}
 
+	/**0以上の数字ではない値が入力された場合、メッセージを表示する
+	 * @param settedNum
+	 */
 	private void showErrorMessage(int settedNum) {
 		// TODO 自動生成されたメソッド・スタブ
 		if(this.checkNumToAdd(settedNum)) {
@@ -74,9 +97,12 @@ public class ManageStock {
 		}
 	}
 
+	/**在庫管理の一連の流れ
+	 * @return
+	 */
 	public boolean manageStock() {
 		productlist.showStocks();
-		System.out.print("補充するものを選んでください。");
+		System.out.print("補充するものを選んでください:");
 		int temp = this.getProductNum();
 		if(temp == 0) {
 			return false;

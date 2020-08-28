@@ -13,6 +13,9 @@ public class MoneyDao {
 		this.db = db;
 	}
 
+	/**DBから値を入手
+	 * @return 現在DBに格納されている値
+	 */
 	public int getData() {
 		// TODO 自動生成されたメソッド・スタブ
 		ResultSet rset;
@@ -31,6 +34,9 @@ public class MoneyDao {
 		return money.getAmount();
 	}
 
+	/**お金を増やす
+	 * @param inmoney
+	 */
 	public void addMoney(int inmoney) {
 		// TODO 自動生成されたメソッド・スタブ
 		String sql = "UPDATE money SET Amount = ?";
@@ -45,6 +51,9 @@ public class MoneyDao {
 		}
 	}
 
+	/**お金を減らす
+	 * @param price
+	 */
 	public void reduceMoney(int price) {
 		// TODO 自動生成されたメソッド・スタブ
 		String sql = "UPDATE money SET Amount = ?";

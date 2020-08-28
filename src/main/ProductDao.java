@@ -13,6 +13,9 @@ public class ProductDao {
 		this.db = db;
 	}
 
+	/**データベースからListオブジェクトへの転写
+	 * @return productlist:データベースをそのままコピーした商品リスト
+	 */
 	public List<Product> makelist() {
 		ResultSet rset;
 		List<Product> productlist = new ArrayList<Product>();

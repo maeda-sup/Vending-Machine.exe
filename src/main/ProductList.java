@@ -25,15 +25,13 @@ public class ProductList {
 		productlist = pDao.makelist();
 	}
 
+	/**商品リストと売り切れか否かをコンソールに表示する
+	 *
+	 */
 	public void showlist() {
 		int i = 1;
 		String soldout = "";
 		for(Product prd: productlist) {
-//			prd.setConn(db);
-//			if(prd.getStock(prd.getId()) == 0) {
-//				soldout = "|売り切れ";
-//			}
-
 			if(sDao.getStock(prd.getId()) == 0) {
 				soldout = "|売り切れ";
 			}
@@ -44,6 +42,9 @@ public class ProductList {
 		}
 	}
 
+	/**商品リストと在庫数（満タンの場合は満タン）を表示する
+	 *
+	 */
 	public void showStocks() {
 		int i = 1;
 		for(Product prd: productlist) {
